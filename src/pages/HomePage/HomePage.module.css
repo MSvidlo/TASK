@@ -1,0 +1,14 @@
+.HomePage{
+display: flex;
+
+}
+.HomeHeader{
+    font-size: 25px;
+    color:blue
+
+};
+.HomeText{
+    font-size: 17px;
+    color:aquamarine
+    
+}

@@ -1,7 +1,7 @@
 import React from 'react';
-import AdvertCard from './components/AdvertCard/AdvertCard';
-import Modal from './components/Modal/Modal';
-import { fetchAllCampers } from './api.js';
+import AdvertCard from '../../components/AdvertCard/AdvertCard.jsx';
+import Modal from '../../components/Modal/Modal.jsx';
+import { fetchAllCampers } from '../../api.js';
 
 const CatalogPage = () => {
   const [adverts, setAdverts] = React.useState([]);

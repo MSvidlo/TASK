@@ -1,61 +1,31 @@
 import React from 'react';
-import AdvertCard from './components/AdvertCard/AdvertCard';
-import Modal from './components/Modal/Modal';
-import { fetchAllCampers } from './api.js'
-
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage.jsx';
+import CatalogPage from './pages/CataloPage/CatalogPage.jsx';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage.jsx';
+import css from "./App.module.css"
 const App = () => {
-  const [adverts, setAdverts] = React.useState([]);
-  const [modalAdvert, setModalAdvert] = React.useState(null);
-  const [favorites, setFavorites] = React.useState(() => JSON.parse(localStorage.getItem('favorites')) || []);
-  const [page, setPage] = React.useState(1);
-  const [loading, setLoading] = React.useState(false);
-
-  const loadAdverts = async (pageNum = 1) => {
-    setLoading(true);
-    try {
-      const data = await fetchAllCampers(pageNum);
-      setAdverts(prev => [...prev, ...data]);
-    } catch (error) {
-      console.error('Failed to load adverts:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  React.useEffect(() => {
-    loadAdverts(page); // Load initial adverts
-  }, [page]);
-
-  const handleFavoriteToggle = (id) => {
-    setFavorites((prev) => {
-      const newFavorites = prev.includes(id) ? prev.filter(fav => fav !== id) : [...prev, id];
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
-      return newFavorites;
-    });
-  };
-
-  const handleShowMore = (advert) => setModalAdvert(advert);
-
-  const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1); // Increment page number to load more data
-  };
-
   return (
-    <div>
-      {adverts.map(advert => (
-        <AdvertCard
-          key={advert._id}
-          advert={advert}
-          isFavorite={favorites.includes(advert._id)}
-          onFavoriteToggle={() => handleFavoriteToggle(advert._id)}
-          onShowMore={() => handleShowMore(advert)}
-        />
-      ))}
-      <button onClick={handleLoadMore} disabled={loading}>
-        {loading ? 'Loading...' : 'Load more'}
-      </button>
-      {modalAdvert && <Modal advert={modalAdvert} onClose={() => setModalAdvert(null)} />}
-    </div>
+<div className={css.header}>
+      <nav className={css.headerList}>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/catalog">Catalog</Link>
+          </li>
+          <li>
+            <Link to="/favorites">Favorites</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+      </Routes>
+      </div>
   );
 };
 

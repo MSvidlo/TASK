@@ -1,0 +1,19 @@
+ .header {
+        background-color: #f8f9fa;
+        padding: 20px;
+      }
+
+ 
+.headerList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 50px;
+  }
+
+.headerList ul li a {
+    text-decoration: none;
+    color: #007bff;
+ 
+  }
