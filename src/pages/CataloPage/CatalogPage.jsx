@@ -1,9 +1,9 @@
 import React from 'react';
 import AdvertCard from './components/AdvertCard/AdvertCard';
 import Modal from './components/Modal/Modal';
-import { fetchAllCampers } from './api.js'
+import { fetchAllCampers } from './api.js';
 
-const App = () => {
+const CatalogPage = () => {
   const [adverts, setAdverts] = React.useState([]);
   const [modalAdvert, setModalAdvert] = React.useState(null);
   const [favorites, setFavorites] = React.useState(() => JSON.parse(localStorage.getItem('favorites')) || []);
@@ -23,7 +23,7 @@ const App = () => {
   };
 
   React.useEffect(() => {
-    loadAdverts(page); // Load initial adverts
+    loadAdverts(page);
   }, [page]);
 
   const handleFavoriteToggle = (id) => {
@@ -37,7 +37,7 @@ const App = () => {
   const handleShowMore = (advert) => setModalAdvert(advert);
 
   const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1); // Increment page number to load more data
+    setPage(prevPage => prevPage + 1);
   };
 
   return (
@@ -59,4 +59,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default CatalogPage;
