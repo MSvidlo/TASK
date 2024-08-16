@@ -1,10 +1,10 @@
 .HomePage{
-display: flex;
+background-color: rgb(213, 210, 210);
 
 }
 .HomeHeader{
     font-size: 25px;
-    color:blue
+    color:black
 
 };
 .HomeText{
